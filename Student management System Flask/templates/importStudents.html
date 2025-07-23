@@ -1,0 +1,27 @@
+{% extends "common/base_template_boostrap.html" %}
+
+{% block main_area %}
+    
+    <div class="fluid-container">
+        <div class="row">
+            <h1>Import Student</h1>
+
+        </div>
+        <div class="row">
+            <form action="/students/import" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Import File</label>
+                    <input type="file" name="csv_file" class="form-control">
+                    {% if error.csv_file_error %}
+                        <span class="text-danger">{{error.csv_file_error}}</span>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <button type="submit">Import</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+            
+{%endblock%}

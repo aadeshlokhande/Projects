@@ -1,0 +1,143 @@
+{% extends "common/base_template_boostrap.html" %}
+
+{% block main_area %}
+    <div class="container">
+        <div class="row">
+            <h1>Menu Form</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label>Role Name</label>
+                        <input type="text" name="name" class="form-control" value="{{ formValue.name }}">
+                            {% if error.name_error %}
+                            <span class="text-danger">{{error.name_error}}</span>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <table class="table table-bordered" id="PermissionTable">
+                            <thead>
+                                    <tr>
+                                        <th>Permission</th>
+                                        <th>Action</th>
+                                    </tr>
+                            </thead>
+                            <tbody>
+                                {% if data.id and data.roles.permissions %}
+                                    {% for permission in data.roles.permissions %}
+                                        <tr id="permissions-row-{{ loop.index }}">
+                                            <td>
+                                                <select class="form-control" name="permission" id="" name='permission[]'>
+                                                    <option value=""> --Select-- </option>
+                                                    {%for menu in menus%}
+                                                    <option value="{{menu.id}}" {% if permission.permission_id == menu.id  %} selected {% endif %} > {{menu.name}} </option>
+                                                    {% endfor %}
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-primary add-row">+</button>
+                                                <button type="button" class="btn btn-danger remove-row" data-id="{{ loop.index }}">-</button>
+                                            </td>
+                                        </tr> 
+                                        {% endfor %}
+                                    {% else %}
+                                    <tr id="permissions-row-0">
+                                        <td>
+                                            <select class="form-control" name="permission" id="" name='permission[]'>
+                                                <option value=""> --Select-- </option>
+                                                
+                                                {%for menu in menus%}
+                                                <option value="{{menu.id}}"> {{menu.name}} </option>
+                                                {% endfor %}
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary add-row">+</button>
+                                            <button type="button" class="btn btn-danger remove-row" data-id="0">-</button>
+                                        </td>
+                                    </tr>
+                                    {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary" >Register</button>
+                        <a href="/role" class="btn btn-primary" role="button">Go Back</a>
+                    </div>
+
+                </form>
+
+            </div>
+        </div> 
+
+        <script>
+            var menus = {{menus | tojson | safe}}
+            
+            var row = document.querySelector("tbody")
+            row.addEventListener("click",function(event){  
+                event.preventDefault() 
+               if(event.target.classList.contains("add-row")){
+                add_row()
+               }
+               if(event.target.classList.contains("remove-row")){
+                   const id = event.target.dataset.id
+                   remove_row(id)
+                }
+            })
+            
+            
+            const select = document.querySelectorAll("select")
+            select.forEach(select => {
+                select.addEventListener("change", (event) => {
+                    event.preventDefault()
+                    menus = removeMenus(menus, event.target.value);
+                });
+            });
+            
+
+            var a = 0
+            
+            var data = {{data | tojson | safe}};
+            var perLen = 'roles' in data?data.roles.permissionsLen:0;
+            if (perLen != 0) {
+                a = perLen
+            }
+
+            
+            function add_row(){
+                console.log("hello")
+                var rowHTML = `<tr id="permissions-row-${++a}">
+                <td><select class="form-control" name="permission" id="" name='permission[]'>
+                    <option value=""> --Select-- </option>`;
+                    rowHTML += createMenuOption(menus);
+                    rowHTML += `</select></td><td>
+                    <button type="button" class="btn btn-primary add-row">+</button>
+                    <button type="button" class="btn btn-danger remove-row" data-id="${a}">-</button>
+                </td></tr>`
+                var tbody = document.querySelector('tbody')
+                tbody.insertAdjacentHTML('beforeend', rowHTML);
+            }
+
+            function remove_row(id){
+                if(id != 0){
+                    document.querySelector(`#permissions-row-${id}`).remove()
+                }
+            }
+
+            function createMenuOption(available_menus){
+                const options = available_menus.map((menu)=>{
+                    return  `<option value="${menu.id}">${menu.name}</option>`
+                })  
+                console.log(options)
+                return options;              
+            }
+
+            function removeMenus(available_menus, id) {
+                console.log(id)
+                const updatedMenus = available_menus.filter(menu => menu.id != id);
+                console.log(updatedMenus);
+                return updatedMenus;
+            }
+        </script>
+{%endblock%}

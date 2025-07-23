@@ -1,0 +1,8 @@
+hotels list (CRUD)
+name, location, contactNo, img
+
+food (CRUD)
+
+order (food item,  quantity)
+myorder (user)
+

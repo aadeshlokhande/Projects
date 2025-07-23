@@ -1,0 +1,52 @@
+1 : required
+2 : PRN Unique
+3 : mobile Unique
+
+add : 1,2,3
+
+edit : 1,
+# this is for only view
+    if request.args.get('student_id')
+        get data from DB and show in form 
+# for validation
+    if request.args.get('student_id'):
+        if (prn is empty)
+            error="required"
+        elif(check input prn number not in other db records except (request.args.get('student_id')))
+            error = "duplicate record"
+        
+=<:>=<:>=<:>=<:>=<:>=<:>=<:>=<:>=<:>=<:>=<:>=<:>=
+pagination
+total number of record / number of len (per page)
+
+page 1 : 1-10
+page 2 : 11-20
+page 3 : 21-30
+
+[{"page": 1, "offset" : 1},
+{"page": 2, "offset" : 11},
+{"page": 3, "offset" : 21}]
+
+
+
+=<:>=<:>=<:>=<:>=<:>=<:>=<:>=<:>=<:>=<:>=<:>=<:>=
+
+User
+    user 1, id =1
+
+roles
+    master Administrator 1 permissions (1,2,3)
+    admin 2
+    student 3
+
+permission
+    student 1
+    user 2
+    department 3
+
+=<:>=<:>=<:>=<:>=<:>=<:>=<:>=<:>=<:>=<:>=<:>=<:>=
+create table in SQL
+
+CREATE TABLE monolythicapp_db.permissions (id INT NOT NULL AUTO_INCREMENT , name VARCHAR(255) NOT NULL , is_delete ENUM('0','1') NOT NULL , created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , updated_at DATETIME on update CURRENT_TIMESTAMP NOT NULL , PRIMARY KEY (id)) ENGINE = InnoDB;
+
+

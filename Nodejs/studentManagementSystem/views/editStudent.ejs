@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Student</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .edit-container {
+      background-color: #fff;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #ffc107;
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #e0a800;
+    }
+
+    @media (max-width: 600px) {
+      .edit-container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="edit-container">
+    <h2>Edit Student</h2>
+    <form action="/students/edit/<%= student.id %>" method="POST">
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name" value="<%= student.name %>" required>
+
+      <label for="age">Age</label>
+      <input type="number" name="age" id="age" value="<%= student.age %>" required>
+
+      <label for="std">Standard</label>
+      <input type="text" name="std" id="std" value="<%= student.std %>" required>
+
+      <label for="rollnumber">Roll Number</label>
+      <input type="number" name="rollnumber" id="rollnumber" value="<%= student.rollnumber %>" required>
+
+      <label for="mobilenumber">Mobile Number</label>
+      <input type="text" name="mobilenumber" id="mobilenumber" value="<%= student.mobilenumber %>" required>
+
+      <button type="submit">Update</button>
+    </form>
+  </div>
+</body>
+</html>

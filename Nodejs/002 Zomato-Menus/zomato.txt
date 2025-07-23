@@ -1,0 +1,25 @@
+hotels list (CRUD)
+name, location, contactNo, img
+
+food (CRUD)
+
+order (food item,  quantity)
+myorder (user)
+
+
+
+
+=<:>=<:>=<:>=<:>=<:>=<:>=<:>=<:>=<:>=<:>=<:>=<:>=
+mkdir zomato-api
+cd zomato-api
+
+
+
+npx sequelize model:generate --name restaurants --attributes name:string, address:string, openTime:string, closeTime:string , contactNo:string, cuisine:string, topDishes:string, averageCost:integer
+
+npx sequelize model:generate --name menus --attributes name:string, description:string, foodType:string, price:string
+
+
+
+
+npx sequelize-cli migration:generate --name menus

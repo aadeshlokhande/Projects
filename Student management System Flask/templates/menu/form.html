@@ -1,0 +1,45 @@
+{% extends "common/base_template_boostrap.html" %}
+
+{% block main_area %}
+    
+    <div class="container">
+        <div class="row">
+            <h1>Menu Form</h1>            
+        </div>
+        {% if error.dub_name_error %}
+            <span class="text-danger">{{error.dub_name_error}}</span>
+        {% endif %}
+        {% if error.dub_route_error %}
+            <span class="text-danger">{{error.dub_route_error}}</span>
+        {% endif %}
+        
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                
+                <form action="#" method="post">
+                    
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="name" class="form-control" value="{{formValue.name}}">
+                        {% if error.name_error %}
+                            <span class="text-danger">{{error.name_error}}</span>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label>Route</label>
+                        <input type="text" name="route" class="form-control" value="{{formValue.route}}">
+                        {% if error.route_error %}
+                            <span class="text-danger">{{error.route_error}}</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary" >Register</button>
+                        <a href="/menu" class="btn btn-primary" role="button">Go Back</a>
+                    </div>
+
+                </form>
+
+            </div>
+        </div> 
+{%endblock%}

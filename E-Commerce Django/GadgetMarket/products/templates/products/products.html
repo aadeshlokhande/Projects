@@ -1,0 +1,72 @@
+    {% extends "admin_base.html" %}
+    {% block main_area %}
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Products</h1>
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example
+                             <a type="button" href="./add"  class="btn btn-primary mb-2">Add Products</a>
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Category Id</th>
+                                            <th>Price</th>
+                                            <th>Quantity</th>
+                                            <th>Status</th>
+                                            <th>Is Delete</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Category Id</th>
+                                            <th>Price</th>
+                                            <th>Quantity</th>
+                                            <th>Status</th>
+                                            <th>Is Delete</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+
+                                    {% for product in data %}
+                                        <tr>
+                                            <th>{{ product.id }}</th>
+                                            <th>{{ product.name }}</th>
+                                            <th>{{ product.description }}</th>
+                                            <th>{{ product.category_id }}</th>
+                                            <th>{{ product.price }}</th>
+                                            <th>{{ product.quantity }}</th>
+                                            <th>{{ product.status }}</th>
+                                            <th>{{ product.is_delete }}</th>
+                                            <th><a href="./edit/{{product.id}}" class='btn btn-primary'>EDIT</a><a href="./delete/{{product.id}}" class='btn btn-danger'>DELETE</a></th>
+
+                                        </tr>
+                                    {% endfor %}
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+{% endblock %}

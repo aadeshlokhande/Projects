@@ -1,0 +1,71 @@
+{% extends "common/base_template_boostrap.html" %}
+
+{% block main_area %}
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        table {
+            font-weight: 900;
+            width: 70%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        th, td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            font-weight: bold;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 10vh;
+            }
+
+
+    </style>
+
+
+</head>
+<body>
+    <h1>Student Details</h1>
+    <table>
+        <tr>
+            <th>Field</th>
+            <th>Details</th>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>{{formdata.name.upper()}}</td>
+        </tr>
+        <tr>
+            <td>Status</td>
+            <td>{{ 'Active' if formdata.is_delete=='0' else 'Inactive' }}</td>
+        </tr>
+        
+    </table>
+    <div class="button-container">
+        <a href="/role" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Go Back</a>
+    </div>
+      
+{%endblock%}

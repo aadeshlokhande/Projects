@@ -1,0 +1,12 @@
+pip install cryptocompare
+pip install emojis 
+pip install pyfiglet
+pip install pyshorteners
+pip install pywhatkit
+pip install speedtest-cli 
+pip install covid
+pip install instagramy
+pip install number2words
+pip install textblob
+pip install translate 
+pip install python-telegram-bot 

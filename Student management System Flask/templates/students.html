@@ -1,0 +1,81 @@
+{% extends "common/base_template_boostrap.html" %}
+
+{% block main_area %}
+    <div class="container">
+        <div class="row">
+            <h1>Students</h1>   
+
+        </div>
+        <div class="d-flex justify-content-end m-2 p-2">
+            <form action="students" method="get">
+                <input type="text" name="search" placeholder="search here" class="input-md" size="30" value = {{data.search}}>
+                <button type="submit" class="btn btn-primary">search</button>
+            </form>
+            <a href="students/add" class="btn btn-primary">Add New</a>
+            <a href="students/import" class="btn btn-primary">Import</a>
+        </div>
+        <div class="row">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Mobile Number</th>
+                        <th>Standard</th>
+                        <th>Section</th>
+                        <th>Age</th>
+                        <th>PRN</th>
+                        <th>Action</th>
+                    </tr>
+
+                    {% if DBdata %}
+                        {% for data in DBdata %}
+                        <tr>
+                            <td>{{data.id}}</td>
+                            <td>{{data.first_name}}</td>
+                            <td>{{data.last_name}}</td>
+                            <td>{{data.mobile_number}}</td>
+                            <td>{{data.standard}}</td>
+                            <td>{{data.section}}</td>
+                            <td>{{data.age}}</td>
+                            <td>{{data.prn}}</td>
+                            <td>
+                                <a href="/students/details?student_id={{data.id}}" class="btn btn-success">View</a>
+                                <a href="/students/edit?student_id={{data.id}}" class="btn btn-warning">Edit</a>
+                                <a href="/students/delete?student_id={{data.id}}" onclick="return confirm('do you want to really want to Delete?')" class="btn btn-danger">Delete</a>
+
+                            </td>
+
+                        </tr>
+                    {% endfor %}
+                    {% else %}
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                        <td colspan="2" >no record found</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    {% endif %}
+
+                
+                </table>
+                <div class="row">
+                    {% for page in data.pagination %}
+                        {% if page.page==data.pageNumber %}
+                        <a href="#" class="btn btn-danger"> 
+                            {{page.page}} 
+                        </a>
+                        {% else %}
+                        <a href="/students?offset={{page.offset}}&page={{page.page}}" class="btn btn-primary"> 
+                            {{page.page}} 
+                        </a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            
+        </div>
+    </div>
+{%endblock%}

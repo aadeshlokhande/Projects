@@ -1,0 +1,63 @@
+{% extends "common/base_template_boostrap.html" %}
+
+{% block main_area %}
+    <div class="container">
+        <div class="row">
+            <h1>Roles</h1>   
+
+        </div>
+        <div class="d-flex justify-content-end m-2 p-2">
+            <form action="students" method="get">
+                <input type="text" name="search" placeholder="search here" class="input-md" size="30" value = {{data.search}}>
+                <button type="submit" class="btn btn-primary">search</button>
+            </form>
+            <a href="role/add" class="btn btn-primary">Add Role</a>
+        </div>
+        <div class="row">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>ID</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+
+                    {% if roles %}
+                        {% for role in roles %}
+                        <tr>
+                            <td>{{role.id}}</td>
+                            <td>{{role.name}}</td>
+                            <td>{{ 'Active' if role.is_delete=='0'  else 'Inactive' }}</td>
+                            
+                            <td>
+                                <a href="/role/details?role_id={{role.id}}" class="btn btn-success">View</a>
+                                <a href="/role/edit?role_id={{role.id}}" class="btn btn-warning">Edit</a>
+                                <a href="/role/delete?role_id={{role.id}}"  class="btn btn-danger">Delete</a>
+
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    {% else %}
+                        <td></td>
+                        <td></td>
+                        <td colspan="2" >no record found</td>
+                        <td></td>
+                    {% endif %}
+                </table>
+                <div class="row">
+                    {% for page in data.pagination %}
+                        {% if page.page==data.pageNumber %}
+                        <a href="#" class="btn btn-danger"> 
+                            {{page.page}} 
+                        </a>
+                        {% else %}
+                        <a href="/students?offset={{page.offset}}&page={{page.page}}" class="btn btn-primary"> 
+                            {{page.page}} 
+                        </a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            
+        </div>
+    </div>
+{%endblock%}

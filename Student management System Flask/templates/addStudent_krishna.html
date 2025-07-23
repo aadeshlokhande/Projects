@@ -1,0 +1,84 @@
+{% extends "common/base_template_boostrap.html" %}
+
+{% block main_area %}
+    
+    <div class="fluid-container">
+        <div class="row">
+            <h1>Student Registration Form</h1>
+            
+        </div>
+        <div class="row">
+                
+                {% if error.dub_prn_error %}
+                    <span class="text-danger">{{error.dub_prn_error}}</span>
+                {% endif %}
+
+                {% if error.dub_mobile_error %}
+                    <span class="text-danger">{{error.dub_mobile_error}}</span>
+                {% endif %}
+
+            <div class="col-md-6 col-sm-12">
+                <form action="" method="post">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" name="first_name" class="form-control" value = "{{formData.first_name}}">
+                        {% if error.first_name_error %}
+                            <span class="text-danger">{{error.first_name_error}}</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" name="last_name" class="form-control" value = "{{formData.last_name}}">
+                        {% if error.last_name_error %}
+                            <span class="text-danger">{{error.last_name_error}}</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label>Mobile Number</label>
+                        <input type="text" name="mobile_number" class="form-control" value = "{{formData.mobile_number}}">
+                        {% if error.mobile_number_error %}
+                            <span class="text-danger">{{error.mobile_number_error}}</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label>Standard</label>
+                        <input type="text" name="standard" class="form-control" value = "{{formData.standard}}">
+                        {% if error.standard_error %}
+                            <span class="text-danger">{{error.standard_error}}</span>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label>Section</label>
+                        <input type="text" name="section" class="form-control" value = "{{formData.section}}">
+                        {% if error.section_error %}
+                            <span class="text-danger">{{error.section_error}}</span>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label>Age</label>
+                        <input type="text" name="age" class="form-control" value = "{{formData.age}}">
+                        {% if error.age_error %}
+                            <span class="text-danger">{{error.age_error}}</span>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label>PRN</label>
+                        <input type="text" name="prn" class="form-control" value = "{{formData.prn}}">
+                        {% if error.prn_error %}
+                            <span class="text-danger">{{error.prn_error}}</span>
+                        {% endif %}
+                    </div>
+                             
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary" href = "/addstudent" >Register</button>
+                    
+                        <a href="/students" class="btn btn-primary" role="button">Go Back</a>
+                    </div>
+
+                </form>
+            </div>
+            
+{%endblock%}
