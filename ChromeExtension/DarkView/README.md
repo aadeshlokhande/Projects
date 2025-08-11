@@ -29,6 +29,4 @@ No more squinting. No more headaches. Just chill, dark vibes. 😎
 \- 🛡️ 100% \*\*privacy friendly\*\* – no data collection.
 
 
-
-
-
+---
