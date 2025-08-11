@@ -18,6 +18,3 @@ No more squinting. No more headaches. Just chill, dark vibes. 😎
 
 ## 📥 How to Install (Manual)
 Since this extension isn’t on the Chrome Web Store, follow these quick steps:
-
-1. **Download** this repository:
-   ```bash
